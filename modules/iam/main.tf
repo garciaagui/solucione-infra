@@ -22,7 +22,7 @@ resource "aws_iam_role" "tf-role" {
           },
           "StringLike" : {
             "token.actions.githubusercontent.com:sub" : [
-              "repo:garciaagui/rocketseat-devops:ref:refs/heads/main"
+              "repo:garciaagui/solucione-infra:ref:refs/heads/main"
             ]
           }
         }
