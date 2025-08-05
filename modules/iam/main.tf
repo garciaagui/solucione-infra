@@ -60,7 +60,7 @@ resource "aws_iam_role" "ecr-role" {
           },
           "StringLike" : {
             "token.actions.githubusercontent.com:sub" : [
-              "repo:garciaagui/solucione-infra:ref:refs/heads/main"
+              "repo:garciaagui/solucione-backend:ref:refs/heads/main"
             ]
           }
         }
