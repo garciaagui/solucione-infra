@@ -15,3 +15,7 @@ resource "aws_s3_bucket_versioning" "versioning_bucket" {
 
   depends_on = [aws_s3_bucket.state_bucket]
 }
+
+resource "aws_s3_bucket" "images_bucket" {
+  bucket = "solucione-images-bucket"
+}
