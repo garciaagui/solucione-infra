@@ -10,11 +10,17 @@ A infraestrutura do Solucione é composta por três módulos principais que gere
 - **S3**: Armazenamento de arquivos e estado do Terraform
 - **ECR**: Registro de containers Docker
 
+## Repositórios complementares
+
+- Backend: https://github.com/garciaagui/solucione-backend
+- Mobile: https://github.com/garciaagui/solucione-mobile
+
 ## 🏗️ Arquitetura
 
 ### Módulos
 
 #### 1. **IAM Module** (`modules/iam/`)
+
 Gerencia as identidades e permissões necessárias para o projeto:
 
 - **OIDC Provider**: Configuração para autenticação via GitHub Actions
@@ -23,6 +29,7 @@ Gerencia as identidades e permissões necessárias para o projeto:
 - **Políticas de Acesso**: Permissões granulares para cada role
 
 #### 2. **S3 Module** (`modules/s3/`)
+
 Gerencia buckets S3 para diferentes propósitos:
 
 - **State Bucket** (`solucione-state-bucket`): Armazena o estado do Terraform
@@ -33,6 +40,7 @@ Gerencia buckets S3 para diferentes propósitos:
   - Política de leitura pública
 
 #### 3. **ECR Module** (`modules/ecr/`)
+
 Configura o Elastic Container Registry:
 
 - **Repository**: `solucione-ecr`
@@ -62,22 +70,26 @@ backend "s3" {
 ### Deploy da Infraestrutura
 
 1. **Clone o repositório**:
+
    ```bash
    git clone <repository-url>
    cd solucione-infra
    ```
 
 2. **Configure o perfil AWS**:
+
    ```bash
    export AWS_PROFILE=seu_profile
    ```
 
 3. **Inicialize o Terraform**:
+
    ```bash
    terraform init
    ```
 
 4. **Planeje as mudanças**:
+
    ```bash
    terraform plan
    ```
@@ -99,6 +111,7 @@ A infraestrutura está configurada para integração com GitHub Actions através
 ### Tags Padrão
 
 Todos os recursos são automaticamente marcados com:
+
 - `IAC = "True"`
 
 ## 📁 Estrutura do Projeto
@@ -120,17 +133,20 @@ solucione-infra/
 ## 🔧 Recursos Criados
 
 ### IAM
+
 - OIDC Provider para GitHub Actions
 - Role `tf-role` com permissões para ECR, IAM e S3
 - Role `ecr-role` com permissões para App Runner e ECR
 - Políticas associadas às roles
 
 ### S3
+
 - Bucket `solucione-state-bucket` (protegido contra destruição)
 - Bucket `solucione-images-bucket` (acesso público)
 - Versionamento habilitado no bucket de estado
 
 ### ECR
+
 - Repository `solucione-ecr`
 - Scan de vulnerabilidades habilitado
 
